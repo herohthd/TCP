@@ -15,10 +15,10 @@
 CourseDB root = NULL;
 StudentDB root_student = NULL;
 int listenfd, connfd, n;
-    pid_t childpid;
-    socklen_t clilen;
-    char buf[MAXLINE];
-    struct sockaddr_in cliaddr, servaddr;
+pid_t childpid;
+socklen_t clilen;
+char buf[MAXLINE];
+struct sockaddr_in cliaddr, servaddr;
 
 // Read course
 CourseDB append_course(CourseDB db, char *idNum, char *idName, char *name, char *timeStart, char *timeEnd, char *week, char *room)
@@ -168,14 +168,16 @@ int conflict(StudentDB db, CourseDB course)
 {
     for(int i=0;i<db->numOfCourses;i++){
         if(db->listCourse[i].timeStart[0]==course->timeStart[0]){
-            int timeStart=db->listCourse[i].timeStart[2]-'0';
-            int timeEnd=db->listCourse[i].timeEnd[2]-'0';
-            int courseStart=course->timeStart[2]-'0';
-            int courseEnd=course->timeEnd[2]-'0';
-            if( (timeStart<=courseStart && courseStart<=timeEnd) ||
-                (timeStart<=courseEnd && courseEnd<=timeEnd) ){
-                    printf("Student %s has course %s conflicts time with course %s\n",db->name,db->listCourse[i].name,course->name);
-                    return 1;
+            if(db->listCourse[i].timeStart[1]==course->timeStart[1]){
+                int timeStart=db->listCourse[i].timeStart[2]-'0';
+                int timeEnd=db->listCourse[i].timeEnd[2]-'0';
+                int courseStart=course->timeStart[2]-'0';
+                int courseEnd=course->timeEnd[2]-'0';
+                if( (timeStart<=courseStart && courseStart<=timeEnd) ||
+                    (timeStart<=courseEnd && courseEnd<=timeEnd) ){
+                        printf("Student %s has course %s conflicts time with course %s\n",db->name,db->listCourse[i].name,course->name);
+                        return 1;
+                }
             }
         }
     }

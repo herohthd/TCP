@@ -39,13 +39,13 @@ void printQuestion(QuestionDB db){
     }
 }
 void addQuestionToDatabase(char *filename,QuestionDB ques){
-    FILE *fout = fopen(filename, "w+");
+    FILE *fout = fopen(filename, "a");
     if (fout == NULL)
     {
         printf("Not exist %s.\n", filename);
     }
     if(ques){
-        fprintf(fout,"%s",ques->question);
+        fprintf(fout,"\n%s",ques->question);
         fprintf(fout,"%s",ques->answerA);
         fprintf(fout,"%s",ques->answerB);
         fprintf(fout,"%s",ques->answerC);
@@ -74,7 +74,6 @@ QuestionDB appendQuestion(QuestionDB db, char* question, char* answerA, char* an
     strcpy(n->answerD, answerD);
     strcpy(n->rightAns, rightAns);
     n->next = NULL;
-    addQuestionToDatabase("question.txt",n);
     if (db == NULL)
     {
         return n;
@@ -133,12 +132,12 @@ void printPlayer(PlayerDB db){
     }
 }
 void addPlayerToDatabase(char *filename,PlayerDB player){
-    FILE *fout = fopen(filename, "w+");
+    FILE *fout = fopen(filename, "a");
     if (fout == NULL)
     {
         printf("Not exist %s.\n", filename);
     }
-    fprintf(fout,"\n%s",player->name);
+    fprintf(fout,"%s\n",player->name);
     fclose(fout);
 }
 PlayerDB appendPlayer(PlayerDB db, char *name)
@@ -148,7 +147,6 @@ PlayerDB appendPlayer(PlayerDB db, char *name)
     n->numOfRightAns = 0;
     n->score = 0;
     n->next = NULL;
-    addPlayerToDatabase("player.txt",n);
     if (db == NULL)
     {
         return n;
@@ -183,6 +181,7 @@ PlayerDB readPlayer(char *filename)
 }
 
 int main(){
+    char str[MAXCHAR];
     rootQuestion = readQuestion("question.txt");
     rootPlayer = readPlayer("player.txt");
     QuestionDB cur=rootQuestion;
@@ -198,6 +197,11 @@ int main(){
     }
     else {
         appendPlayer(rootPlayer,username);
+        PlayerDB cur = (PlayerDB)malloc(sizeof(struct Player));
+        strcpy(cur->name,username);
+        cur->numOfRightAns = 0;
+        cur->score = 0;
+        addPlayerToDatabase("player.txt",cur);
         user = registered(rootPlayer,username);
         printf("Register successfully\n");
     }
@@ -206,18 +210,38 @@ int main(){
         printf("Enter answer:");
         fflush(stdin);
         scanf("%s",ans);
+        getchar();
         if(checkAnswer(cur,ans)){
             user->numOfRightAns++;
             printf("You right!\n");
             cur=cur->next;
         }
         else{
-            printf("You wrong!");
+            printf("You wrong!\n");
             break;
         }
     }
     user->score = user->numOfRightAns*SCORE;
     printf("your score is %d\n",user->score);
+    QuestionDB n = (QuestionDB)malloc(sizeof(struct Question));
+    printf("Enter question u want to add:");
+    fflush(stdin);
+    fgets(str,sizeof(str),stdin);
+    sscanf(str,"%[^\n]s",n->question);
+    n->question[strlen(n->question)]='\n';
+    printf("%s",n->question);
+    printf("Enter answer A:");
+    fgets(n->answerA,sizeof(n->answerA),stdin);
+    printf("Enter answer B:");
+    fgets(n->answerB,sizeof(n->answerB),stdin);
+    printf("Enter answer C:");
+    fgets(n->answerC,sizeof(n->answerC),stdin);
+    printf("Enter answer D:");
+    fgets(n->answerD,sizeof(n->answerD),stdin);
+    printf("Enter right answer:");
+    scanf("%s",n->rightAns);
+    addQuestionToDatabase("question.txt",n);
+    free(n);
     free(rootPlayer);
     free(rootQuestion);
 }

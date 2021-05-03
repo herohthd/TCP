@@ -1,24 +1,30 @@
-When is my birthday?
-A. 21/05
-B. 19/01
-C. 22/04
-D. 10/12
+Which is the most successful movie?
+A.Titanic
+B.Avatar
+C.Avengers
+D.Harry Potter
+C
+Which sitcom is the funniest?
+A.Friends
+B.How i met your mother
+C.Bigbang theory
+D.Hana Motana
 A
-Who is the richest man in the world?
-A. Bill Gates
-B. Elon Musk
-C. Pham Nhat Vuong
-D. Jack Ma 
-B
-Who is the highest member in 1D?
-A.Zayn
-B.Harry
-C.Niall
-D.Louis
-B
-who is the first man landing on moon?
-A.A
-B.B
-C.C
-D.D
+Which uni is the best?
+A.HUST
+B.NUCE
+C.NEU
+D.FTU
+A
+Which city is the best?
+A.Hai Duong
+B.Ha noi
+C.Hung Yen
+D.Hai Phong
+A
+Who is the prettiest?
+A.HuongQuynh
+B.DiemQuynh
+C.ThuHai
+D.Seo je yi
 A

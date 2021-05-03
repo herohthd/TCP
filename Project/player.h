@@ -10,7 +10,7 @@ struct Player{
 typedef struct Player* PlayerDB;
 
 PlayerDB readPlayer(char *filename);
-PlayerDB appendPlayer(PlayerDB db, char *name);
+PlayerDB appendPlayer(PlayerDB db, PlayerDB player);
 PlayerDB registered(PlayerDB db,char *name);
 void printPlayer(PlayerDB db);
 

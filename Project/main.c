@@ -23,6 +23,7 @@ socklen_t clilen;
 char buf[MAXLINE];
 char flag[MAXCHAR];
 char mark[MAXCHAR];
+int markIfWrong = 1;
 int countQuestion = 0;
 struct sockaddr_in cliaddr, servaddr;
 
@@ -183,6 +184,19 @@ PlayerDB readPlayer(char *filename)
     fclose(fin);
     return rootPlayer;  
 }
+void addPlayerResult(char *filename,PlayerDB uCur) {
+    FILE *fout = fopen(filename, "a");
+    if (fout == NULL)
+    {
+        printf("Not exist %s.\n", filename);
+    }
+    if(uCur){
+        fprintf(fout,"%s\t",uCur->name);
+        fprintf(fout,"%d\t",uCur->numOfRightAns);
+        fprintf(fout,"%d\t\n",uCur->numOfRightAns*10);
+    }
+    fclose(fout);
+}
 void sendAQuestion(QuestionDB qRoot, PlayerDB uCur, int num) {
     char correct[MAXCHAR] = "200";
     char wrong[MAXCHAR] = "201";
@@ -222,13 +236,16 @@ void sendAQuestion(QuestionDB qRoot, PlayerDB uCur, int num) {
     }
     else{
         send(connfd,wrong,strlen(wrong),0);
+        markIfWrong = 0;
     }
 }
 void sendQuestions(QuestionDB qRoot, PlayerDB uCur) {
     bool arr[21] = {0};
     int r;
     countQuestion = 0;
-    while(countQuestion < MAXQUESTION) {
+    markIfWrong = 1;  // If wrong write result and wait for menu choice
+    uCur->numOfRightAns = 0;
+    while(countQuestion < MAXQUESTION && markIfWrong == 1) {
         printf("Number of question until now:%d\n",countQuestion);
         countQuestion++;
         do{
@@ -237,7 +254,7 @@ void sendQuestions(QuestionDB qRoot, PlayerDB uCur) {
         arr[r] = 1;
         sendAQuestion(qRoot,uCur,r);
     }
-    
+    addPlayerResult("result.txt",uCur);
 }
 void addQuestion(QuestionDB qRoot) {
     QuestionDB quest = (QuestionDB)malloc(sizeof(struct Question));
@@ -361,7 +378,7 @@ int main(){
                 }
             }while(strcmp(flag,"101")==0);
 
-            // receive menu choice: single play, multi play,
+            // receive menu choice: single play,
             //  score board or add question to database
             while( (n = recv(connfd,buf,MAXLINE,0)) > 0){
                 // printf("%d\n",n);
@@ -371,6 +388,7 @@ int main(){
                 puts(buffer);
                 // puts(buf);
                 if(strcmp(buffer,"1") == 0) {
+                    printf("YES");
                     sendQuestions(rootQuestion,user);
                 } else if(strcmp(buffer,"2") == 0) {
                     addQuestion(rootQuestion);

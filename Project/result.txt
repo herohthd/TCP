@@ -1,0 +1,12 @@
+thinh	5	50	
+mai	5	50	
+mai	5	50	
+mama	0	0	
+mama	0	0	
+baba	5	50	
+baba	0	0	
+baba	0	0	
+boy	1	10	
+boy	1	10	
+boy	5	50	
+hoaianh	5	50	

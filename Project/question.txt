@@ -1,4 +1,4 @@
-Which is the most successful movie?
+Which is the most successful series?
 A.Titanic
 B.Avatar
 C.Avengers
@@ -10,21 +10,57 @@ B.How i met your mother
 C.Bigbang theory
 D.Hana Motana
 A
-Which uni is the best?
+Which university is largest?
 A.HUST
 B.NUCE
 C.NEU
 D.FTU
 A
-Which city is the best?
-A.Hai Duong
-B.Ha noi
-C.Hung Yen
-D.Hai Phong
+Which country is the best at exporting caffe?
+A.Vietnam
+B.Brazil
+C.Indonesia
+D.Thailand
 A
-When is Vietnam official free?
-30/4/1975
-1/5/1975
-1/6/1923
-30/4/1980
+When is Mother's day?
+A.9/5
+B.1/5
+C.1/6
+D.30/4
 A
+Who is the minister of Vietnam?
+A.1
+B.2
+C.2
+D.3
+B
+Who is the most famous General of Vietnam?
+A.Vo Nguyen Giap
+B.Nguyen Tuan Dung
+C.Dinh La Thang
+D.Nguyen Trung Truc
+A
+Elsa is character of which following movie?
+A. Frozen 1
+B. Fast and furious
+C. Forrst Gump
+D. Money Heist
+A
+Which animal is fastest on land?
+A.Cheetah
+B.Tiger
+C.Lion
+D.Rabbit
+A
+test question
+A.test A
+B.test B
+C.test C
+D.test D
+C
+Who is the CEO of Tesla?
+A.Warren Buffet
+B.Jeff Bezos
+C.Bill Gates
+D.Elon Musk
+D

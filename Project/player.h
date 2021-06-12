@@ -9,10 +9,14 @@ struct Player{
 };
 typedef struct Player* PlayerDB;
 
-PlayerDB readPlayer(char *filename);
+void addPlayerToDatabase(char *filename,PlayerDB player);
 PlayerDB appendPlayer(PlayerDB db, PlayerDB player);
 PlayerDB registered(PlayerDB db,char *name);
 void printPlayer(PlayerDB db);
-
-
+void addPlayerResult(char *filename,PlayerDB uCur);
+PlayerDB getPlayerResult(char *filename);
+PlayerDB bubbleSort(PlayerDB result);
+void swap(PlayerDB a, PlayerDB b);
+char *getResult();
+PlayerDB replace(PlayerDB result,PlayerDB n);
 #endif

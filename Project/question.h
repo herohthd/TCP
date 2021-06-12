@@ -12,9 +12,12 @@ struct Question{
 };
 typedef struct Question *QuestionDB;
 
-QuestionDB readQuestion(char *filename);
-QuestionDB appendQuestion(QuestionDB db, char* question, char* answerA, char* answerB, char* answerC, char* answerD, char* rightAns);
+int checkAnswer(QuestionDB cur, char *ans);
 void printQuestion(QuestionDB db);
+void addQuestionToDatabase(char *filename,QuestionDB ques);
+void printOneQuestion(QuestionDB db);
+QuestionDB appendQuestion(QuestionDB db, char* question, char* answerA, char* answerB, char* answerC, char* answerD, char* rightAns);
+QuestionDB insertAtBeginning(QuestionDB db,QuestionDB quest);
 
 
 

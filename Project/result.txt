@@ -1,12 +1,8 @@
-thinh	5	50	
-mai	5	50	
-mai	5	50	
-mama	0	0	
-mama	0	0	
-baba	5	50	
-baba	0	0	
-baba	0	0	
-boy	1	10	
-boy	1	10	
-boy	5	50	
-hoaianh	5	50	
+huy 5   150
+
+hieu	1	10
+hieu	5	180
+hieu	3	60
+hung	0	0
+hung	5	150
+dung	5	150
